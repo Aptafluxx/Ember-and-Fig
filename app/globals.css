@@ -1021,3 +1021,454 @@ h2 em {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Responsive + motion hardening ===== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  overflow: hidden;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+.page-transition {
+  animation: pageEnter 0.62s cubic-bezier(0.22, 0.8, 0.24, 1) both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    clip-path: inset(2% 0 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0);
+  }
+}
+
+/* Prevent long words, URLs and form values from creating horizontal overflow. */
+.hero h1,
+.page-hero h1,
+.contact-hero h1,
+.reservation-intro h1,
+.footer h2,
+.statement-main h2,
+.feature-copy h2,
+.menu-preview h2,
+.reservation-band h2,
+.map-heading h2,
+.menu-section-title h2,
+.success-panel h2,
+.dish-row h3,
+.menu-item h3 {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.button,
+.nav-reserve,
+.text-link {
+  max-width: 100%;
+}
+
+/* Slightly softer motion on interactive imagery. */
+.feature-photo img,
+.contact-image img,
+.hero-image img {
+  transition: transform 0.9s cubic-bezier(0.22, 0.8, 0.24, 1),
+    filter 0.5s ease;
+}
+
+.feature:hover .feature-photo img,
+.contact-grid:hover .contact-image img {
+  transform: scale(1.035);
+}
+
+.hero:hover .hero-image img {
+  transform: scale(1.018);
+}
+
+.dish-row,
+.menu-item,
+.detail,
+.button,
+.text-link,
+.circle-link,
+.nav a {
+  transition-property: transform, color, background-color, border-color, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+.dish-row:hover {
+  transform: translateX(5px);
+}
+
+.menu-item:hover {
+  transform: translateX(5px);
+}
+
+/* Better mobile sizing and spacing. */
+@media (max-width: 900px) {
+  .site-header {
+    padding: 0 5vw;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-name {
+    white-space: nowrap;
+  }
+
+  .nav {
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+  }
+
+  .hero {
+    min-height: min(820px, calc(100svh - 70px));
+  }
+
+  .hero-copy {
+    padding-top: clamp(52px, 10vh, 90px);
+  }
+
+  .hero h1 {
+    font-size: clamp(64px, 17vw, 112px);
+    max-width: 9ch;
+  }
+
+  .hero-intro {
+    max-width: min(100%, 360px);
+  }
+
+  .hero-bottom {
+    left: 7vw;
+    right: 7vw;
+    bottom: 18px;
+    gap: 15px;
+  }
+
+  .statement-main h2,
+  .menu-preview h2,
+  .reservation-band h2,
+  .map-heading h2 {
+    font-size: clamp(48px, 12vw, 82px);
+  }
+
+  .feature-photo,
+  .contact-image {
+    min-height: clamp(360px, 70vw, 520px);
+  }
+
+  .menu-item,
+  .dish-row {
+    min-width: 0;
+  }
+
+  .menu-item {
+    align-items: flex-start;
+  }
+
+  .menu-item > div,
+  .dish-row > div {
+    min-width: 0;
+  }
+
+  .menu-item h3,
+  .dish-row h3 {
+    font-size: clamp(23px, 5vw, 29px);
+  }
+
+  .menu-item p,
+  .dish-row p {
+    max-width: 100%;
+  }
+
+  .reservation-band {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer h2 {
+    font-size: clamp(54px, 13vw, 95px);
+  }
+
+  .footer-cta {
+    min-width: 0;
+  }
+
+  .form-heading h2,
+  .success-panel h2 {
+    font-size: clamp(46px, 11vw, 68px);
+  }
+
+  .map-frame {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
+  .brand-mark {
+    width: 45px;
+    height: 37px;
+    font-size: 15px;
+  }
+
+  .brand-name {
+    font-size: 13px;
+  }
+
+  .nav {
+    top: 64px;
+    padding: 26px 7vw 32px;
+  }
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .hero-image {
+    inset: 47% 0 0;
+  }
+
+  .hero-copy {
+    padding: 48px 7vw 40px;
+  }
+
+  .hero-kicker {
+    max-width: none;
+    margin-bottom: 42px;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 19vw, 92px);
+    margin-bottom: 32px;
+  }
+
+  .hero-intro {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+
+  .hero-bottom {
+    display: none;
+  }
+
+  .section,
+  .menu-preview {
+    padding: 22vw 7vw;
+  }
+
+  .statement-main h2,
+  .menu-preview h2,
+  .reservation-band h2,
+  .map-heading h2 {
+    font-size: clamp(45px, 13vw, 68px);
+  }
+
+  .large-copy {
+    font-size: 17px;
+  }
+
+  .feature-copy {
+    padding: 20vw 7vw;
+  }
+
+  .feature-copy h2 {
+    font-size: clamp(48px, 13vw, 74px);
+  }
+
+  .menu-preview-heading {
+    padding-bottom: 30px;
+  }
+
+  .menu-preview-heading .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dish-row {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 22px 0;
+  }
+
+  .dish-row strong {
+    white-space: nowrap;
+    font-size: 18px;
+  }
+
+  .reservation-band {
+    padding: 22vw 7vw;
+    gap: 38px;
+  }
+
+  .circle-link {
+    width: 108px;
+    height: 108px;
+    flex-basis: 108px;
+  }
+
+  .footer {
+    padding: 20vw 7vw 25px;
+  }
+
+  .footer-top {
+    gap: 45px;
+    padding-bottom: 18vw;
+  }
+
+  .footer h2 {
+    font-size: clamp(52px, 14vw, 78px);
+  }
+
+  .footer-bottom {
+    font-size: 8px;
+  }
+
+  .footer-bottom .footer-links {
+    gap: 18px;
+  }
+
+  .page-hero,
+  .contact-hero,
+  .reservation-intro {
+    padding: 22vw 7vw 15vw;
+    gap: 35px;
+  }
+
+  .page-hero h1,
+  .contact-hero h1,
+  .reservation-intro h1 {
+    font-size: clamp(60px, 18vw, 92px);
+    line-height: 0.82;
+  }
+
+  .menu-nav {
+    gap: 20px;
+    padding: 17px 7vw;
+    scrollbar-width: none;
+  }
+
+  .menu-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-sections {
+    padding: 0 7vw;
+  }
+
+  .menu-section,
+  .menu-section.offset {
+    padding: 18vw 0;
+  }
+
+  .menu-section-title h2 {
+    font-size: clamp(43px, 12vw, 68px);
+  }
+
+  .menu-items {
+    padding-top: 38px;
+  }
+
+  .menu-item {
+    gap: 16px;
+    padding: 22px 0;
+  }
+
+  .menu-item h3 {
+    font-size: 24px;
+  }
+
+  .menu-item strong {
+    font-size: 18px;
+    white-space: nowrap;
+  }
+
+  .menu-footer {
+    padding: 15vw 7vw;
+  }
+
+  .reservation-form {
+    margin: 18vw auto;
+    padding: 0 7vw;
+  }
+
+  .form-heading {
+    margin-bottom: 30px;
+  }
+
+  .field-grid {
+    gap: 0;
+  }
+
+  .field {
+    padding: 19px 0;
+  }
+
+  .reservation-form .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .success-panel {
+    margin: 15vw 7vw;
+    padding: 14vw 7vw;
+  }
+
+  .reservation-notes {
+    margin: 0 7vw;
+  }
+
+  .reservation-notes > div {
+    padding: 32px 0 42px;
+  }
+
+  .contact-image {
+    min-height: 360px;
+  }
+
+  .contact-details {
+    padding: 17vw 7vw;
+    gap: 28px;
+  }
+
+  .detail {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .map-section {
+    padding: 18vw 7vw;
+    gap: 38px;
+  }
+
+  .map-frame {
+    height: 330px;
+  }
+}
